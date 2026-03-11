@@ -1,0 +1,25 @@
+.appProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-toast);
+
+  :global([data-slot='progress-indicator']) {
+    animation: app-progress-indeterminate 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes app-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(-35%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
