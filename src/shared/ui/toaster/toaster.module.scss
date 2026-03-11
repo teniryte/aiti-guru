@@ -1,0 +1,108 @@
+.viewport {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  gap: 8px;
+  width: min(360px, calc(100vw - 32px));
+  z-index: var(--z-toast);
+}
+
+.toast {
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  box-shadow: 0 10px 30px rgba(35, 35, 35, 0.08);
+  padding: var(--space-10) var(--space-14);
+  font-family: var(--app-font-family);
+  font-size: var(--font-size-14);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--space-12);
+  align-items: center;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-secondary);
+}
+
+.closeButton {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 4px;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: var(--radius-full);
+  align-self: center;
+
+  &:hover {
+    background-color: var(--color-bg-surface-subtle);
+    color: var(--color-text-secondary);
+  }
+
+  &:active {
+    background-color: var(--color-border-soft);
+  }
+}
+
+.success {
+  border-color: rgba(47, 158, 68, 0.18);
+
+  .icon {
+    background-color: rgba(47, 158, 68, 0.08);
+    color: var(--color-success-strong);
+  }
+}
+
+.error {
+  border-color: rgba(229, 72, 77, 0.16);
+
+  .icon {
+    background-color: rgba(229, 72, 77, 0.08);
+    color: var(--color-danger-text);
+  }
+}
+
+.info {
+  border-color: rgba(54, 122, 255, 0.16);
+
+  .icon {
+    background-color: rgba(54, 122, 255, 0.08);
+    color: var(--color-accent-solid);
+  }
+}
+

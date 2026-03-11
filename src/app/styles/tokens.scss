@@ -35,6 +35,7 @@
   /* Z-index */
   --z-overlay: 100;
   --z-dialog: 101;
+  --z-toast: 102;
 
   /* Palette */
   --color-white: #ffffff;
@@ -42,6 +43,7 @@
   --color-blue-600: #242edb;
   --color-blue-500: #367aff;
   --color-green-100: #ebf3ea;
+  --color-green-500: #2f9e44;
 
   --color-gray-25: #f7f7f7;
   --color-gray-50: #ededed;
@@ -50,6 +52,8 @@
   --color-gray-250: #9c9c9c;
   --color-gray-300: #999999;
   --color-gray-900: #232323;
+
+  --color-red-500: #e5484d;
 
   /* Overlays */
   --overlay-strong: rgba(35, 35, 35, 0.28);

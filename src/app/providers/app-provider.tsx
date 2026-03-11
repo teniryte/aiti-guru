@@ -1,14 +1,17 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from '@tanstack/react-router';
-import { queryClient } from './providers/query-client';
-import { router } from './providers/router';
 
-import './styles/index.scss';
+import { Toaster } from '@/shared/ui/toaster';
 
-export function App() {
+import { queryClient } from './query-client';
+import { router } from './router';
+
+export function AppProvider() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Toaster />
     </QueryClientProvider>
   );
 }
+
