@@ -1,0 +1,16 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.label {
+  color: #232323;
+  font-size: 16px;
+  font-weight: 500;
+
+  &.big {
+    font-size: 18px;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import styles from './Button.module.scss';
+import styles from './button.module.scss';
 
 type ButtonSize = 'normal' | 'big';
 
@@ -24,8 +24,8 @@ export function Button({
       className={clsx(
         styles.button,
         {
-          [size]: true,
-          block: isBlock,
+          [styles[size]]: true,
+          [styles.block]: isBlock,
         },
         className,
       )}
