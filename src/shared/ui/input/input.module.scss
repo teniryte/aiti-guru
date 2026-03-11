@@ -5,26 +5,26 @@
   box-sizing: border-box;
   gap: 14px;
   padding: 14px 16px;
-  border-radius: 12px;
-  border: 1.5px solid #ededed;
-  background: #fff;
-  transition: border-color 0.2s ease;
+  border-radius: var(--app-radius-control-lg);
+  border: var(--border-width-1_5) solid var(--color-border-soft);
+  background: var(--color-bg-surface);
+  transition: border-color var(--transition-fast);
 
   &:focus-within {
-    border-color: #c9c9c9;
+    border-color: var(--color-border-strong);
   }
 }
 
 .inputWrapperNormal {
   gap: 10px;
   padding: 10px 12px;
-  border-radius: 6px;
+  border-radius: var(--app-radius-control);
 }
 
 .inputWrapperBig {
   gap: 14px;
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: var(--app-radius-control-lg);
 }
 
 .inputIcon {
@@ -32,10 +32,10 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #c9c9c9;
+  color: var(--color-text-muted);
 
   svg {
-    stroke: #c9c9c9;
+    stroke: var(--color-text-muted);
   }
 }
 
@@ -44,13 +44,13 @@
   border: none;
   outline: none;
   background: transparent;
-  color: #232323;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
+  color: var(--color-text-primary);
+  font-family: var(--app-font-family);
+  font-weight: var(--font-weight-medium);
   min-width: 0;
 
   &::placeholder {
-    color: #c9c9c9;
+    color: var(--color-text-muted);
     font-weight: 400;
   }
 
@@ -60,13 +60,13 @@
 }
 
 .inputFieldNormal {
-  font-size: 14px;
+  font-size: var(--font-size-14);
   line-height: 140%;
   letter-spacing: 0;
 }
 
 .inputFieldBig {
-  font-size: 18px;
+  font-size: var(--font-size-18);
   line-height: 150%;
   letter-spacing: -0.27px;
 }
@@ -81,15 +81,15 @@
   border: none;
   padding: 0 4px;
   cursor: pointer;
-  color: #c9c9c9;
+  color: var(--color-text-muted);
   line-height: 0;
 
   svg {
-    stroke: #c9c9c9;
+    stroke: var(--color-text-muted);
   }
 
   &:hover svg {
-    stroke: #999;
+    stroke: var(--color-text-secondary);
   }
 }
 

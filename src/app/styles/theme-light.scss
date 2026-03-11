@@ -1,0 +1,44 @@
+:root {
+  color-scheme: light;
+
+  /* App-level typography and controls */
+  --app-font-family: var(--font-family-base);
+  --app-font-size-md: var(--font-size-14);
+
+  --app-radius-control: var(--radius-6);
+  --app-radius-control-lg: var(--radius-12);
+
+  /* Backgrounds */
+  --color-bg-page: var(--color-white);
+  --color-bg-surface: var(--color-white);
+  --color-bg-surface-subtle: var(--color-gray-25);
+
+  /* Text */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-200);
+  --color-text-on-accent: var(--color-white);
+
+  --color-text-label-muted: var(--color-gray-250);
+  --color-text-label-disabled: var(--color-gray-200);
+
+  /* Borders */
+  --color-border-soft: var(--color-gray-50);
+  --color-border-strong: var(--color-gray-200);
+  --color-border-disabled: var(--color-gray-60);
+  --color-border-accent: var(--color-blue-500);
+
+  /* Accent */
+  --color-accent-solid: var(--color-blue-600);
+  --color-accent-strong: var(--color-blue-500);
+
+  /* Overlays & shadows */
+  --color-overlay-backdrop: var(--overlay-strong);
+
+  --shadow-dialog: var(--shadow-dialog-lg), var(--shadow-dialog-md);
+  --shadow-button-lg: var(--shadow-button-lg-outer), var(--shadow-button-lg-inner);
+
+  /* Focus */
+  --focus-ring-color: var(--color-gray-200);
+}
+

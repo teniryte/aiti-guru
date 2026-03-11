@@ -3,7 +3,7 @@ import { RouterProvider } from '@tanstack/react-router';
 import { queryClient } from './providers/query-client';
 import { router } from './providers/router';
 
-import './styles/globals.scss';
+import './styles/index.scss';
 
 export function App() {
   return (

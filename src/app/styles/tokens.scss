@@ -1,0 +1,64 @@
+:root {
+  /* Typography */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+
+  /* Radius */
+  --radius-6: 6px;
+  --radius-12: 12px;
+  --radius-full: 999px;
+
+  /* Borders */
+  --border-width-1_5: 1.5px;
+  --border-width-2: 2px;
+
+  /* Motion */
+  --transition-fast: 0.2s ease;
+
+  /* Z-index */
+  --z-overlay: 100;
+  --z-dialog: 101;
+
+  /* Palette */
+  --color-white: #ffffff;
+
+  --color-blue-600: #242edb;
+  --color-blue-500: #367aff;
+  --color-green-100: #ebf3ea;
+
+  --color-gray-25: #f7f7f7;
+  --color-gray-50: #ededed;
+  --color-gray-60: #e1e1e1;
+  --color-gray-200: #c9c9c9;
+  --color-gray-250: #9c9c9c;
+  --color-gray-300: #999999;
+  --color-gray-900: #232323;
+
+  /* Overlays */
+  --overlay-strong: rgba(35, 35, 35, 0.28);
+
+  /* Shadows */
+  --shadow-dialog-lg: 0 20px 40px rgba(35, 35, 35, 0.16);
+  --shadow-dialog-md: 0 8px 16px rgba(35, 35, 35, 0.08);
+
+  --shadow-button-lg-outer: 0 8px 8px 0 rgba(54, 122, 255, 0.03);
+  --shadow-button-lg-inner: inset 0 -2px 0 1px rgba(0, 0, 0, 0.08);
+}
+

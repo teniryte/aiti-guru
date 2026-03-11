@@ -1,0 +1,17 @@
+:root {
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size-md);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+}
+
