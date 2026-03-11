@@ -1,0 +1,14 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+}
+
+.indicator {
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent-solid);
+  transition: transform 180ms ease;
+}
