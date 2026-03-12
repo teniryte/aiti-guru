@@ -24,7 +24,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
+      host: '0.0.0.0',
       port: Number(env.PORT) || 5173,
+      allowedHosts: ['flaux.ru'],
     },
   };
 });

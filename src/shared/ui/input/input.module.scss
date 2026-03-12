@@ -64,6 +64,7 @@
   &::placeholder {
     color: var(--color-text-muted);
     font-weight: 400;
+    letter-spacing: normal;
   }
 
   &[type='password'] {
