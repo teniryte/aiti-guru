@@ -11,8 +11,7 @@ export function ProductsSearchInput({ value, onChange }: ProductsSearchInputProp
     <SearchInput
       className={styles.searchInput}
       value={value}
-      onChange={(e) => onChange(e.target.value)}
-      onClear={() => onChange('')}
+      onChange={onChange}
       placeholder="Найти"
     />
   );

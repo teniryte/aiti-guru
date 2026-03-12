@@ -1,7 +1,6 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   padding: 0 30px;
   height: 105px;
@@ -12,6 +11,8 @@
 
 .title {
   font-family: 'Cairo', sans-serif;
+  width: 400px;
+  flex-shrink: 0;
   font-size: 24px;
   font-weight: 700;
   color: var(--color-text-primary);
@@ -22,5 +23,5 @@
 
 .searchWrapper {
   flex: 1;
-  max-width: 800px;
+  max-width: 1023px;
 }
