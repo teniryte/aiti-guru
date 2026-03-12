@@ -1,0 +1,5 @@
+.searchInputWrapper {
+  :global(.inputWrapper) {
+    background: var(--color-bg-search-input);
+  }
+}

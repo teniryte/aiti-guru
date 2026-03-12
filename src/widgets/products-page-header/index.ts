@@ -1,0 +1,1 @@
+export { ProductsPageHeader } from './ui/products-page-header/products-page-header';

@@ -1,20 +1,14 @@
 import { useLogout } from '@/features/auth/logout';
-import { useQuery } from '@tanstack/react-query';
-import { authQueries } from '@/entities/session/api/auth.queries';
+import { ProductsPageHeader } from '@/widgets/products-page-header';
+import styles from './products-page.module.scss';
 
 export function ProductsPage() {
   const logout = useLogout();
-  const { data: user } = useQuery(authQueries.me());
-
+  
   return (
-    <main>
-      <h1>Products</h1>
-      <p>Protected content. You are logged in.</p>
-      {user && (
-        <p>
-          Hello, {user.firstName} {user.lastName}
-        </p>
-      )}
+    <main className={styles.page}>
+      <ProductsPageHeader />
+
       <button type="button" onClick={logout}>
         Log out
       </button>
