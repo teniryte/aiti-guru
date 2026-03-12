@@ -18,6 +18,16 @@ type VendorSelectFieldProps = {
   className?: string;
 };
 
+const selectClassNames = {
+  ...Object.fromEntries(Object.entries(styles).map(([key, value]) => [key, () => value])),
+  option: (state: { isSelected: boolean; isFocused: boolean }) =>
+    clsx(
+      styles.option,
+      state.isSelected && styles.optionSelected,
+      state.isFocused && styles.optionFocused,
+    ),
+};
+
 export function VendorSelectField({
   value,
   onChange,
@@ -57,20 +67,7 @@ export function VendorSelectField({
       <CreatableSelect<VendorOption, false>
         unstyled
         classNamePrefix="vendorSelect"
-        classNames={{
-          // Map class names from the SCSS module to functions that return the class names expected by react-select
-          ...Object.keys(styles).reduce((acc: Record<string, () => string>, key) => {
-            acc[key] = () => styles[key];
-            return acc;
-          }, {}),
-
-          option: (state) =>
-            clsx(
-              styles.option,
-              state.isSelected && styles.optionSelected,
-              state.isFocused && styles.optionFocused,
-            ),
-        }}
+        classNames={selectClassNames}
         isClearable
         isDisabled={disabled}
         options={options}

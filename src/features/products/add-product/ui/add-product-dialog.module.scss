@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.errorText {
+  margin: 0;
+  color: var(--color-danger-text);
+  font-size: 13px;
+  line-height: 140%;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: var(--app-radius-control);
+  border: 1px solid var(--color-border-soft);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-bg-surface-subtle);
+}
