@@ -4,6 +4,8 @@ import AddIconSvg from './add.svg?react';
 import AlertIconSvg from './alert.svg?react';
 import CheckIconSvg from './check.svg?react';
 import CloseIconSvg from './close.svg?react';
+import CaretLeftIconSvg from './caret-left.svg?react';
+import CaretRightIconSvg from './caret-right.svg?react';
 import EyeOffIconSvg from './eye-off.svg?react';
 import EyeOnIconSvg from './eye-on.svg?react';
 import InfoIconSvg from './info.svg?react';
@@ -13,10 +15,13 @@ import PersonIconSvg from './person.svg?react';
 import PlusIconSvg from './plus.svg?react';
 import RefreshIconSvg from './refresh.svg?react';
 import SearchIconSvg from './search.svg?react';
+import SortIconSvg from './sort.svg?react';
 
 const iconsMap = {
   add: AddIconSvg,
   alert: AlertIconSvg,
+  'caret-left': CaretLeftIconSvg,
+  'caret-right': CaretRightIconSvg,
   check: CheckIconSvg,
   close: CloseIconSvg,
   'eye-off': EyeOffIconSvg,
@@ -28,6 +33,7 @@ const iconsMap = {
   plus: PlusIconSvg,
   refresh: RefreshIconSvg,
   search: SearchIconSvg,
+  sort: SortIconSvg,
 };
 
 export type IconName = keyof typeof iconsMap;

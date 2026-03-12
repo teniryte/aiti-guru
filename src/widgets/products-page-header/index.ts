@@ -1,1 +1,1 @@
-export { ProductsPageHeader } from './ui/products-page-header/products-page-header';
+export { ProductsPageHeader } from './ui/products-page-header';

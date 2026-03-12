@@ -18,14 +18,17 @@ export function getProductsListQuery(query: ProductsQuery) {
   return queryOptions({
     queryKey: productKeys.list(normalizedQuery),
     queryFn: async ({ signal }) => {
+      const pageOptions = {
+        limit: normalizedQuery.limit,
+              skip: normalizedQuery.skip,
+              sortBy: normalizedQuery.sortBy,
+              order: normalizedQuery.order,
+      };
       switch (normalizedQuery.mode) {
         case 'list':
           return mapProductsListDtoToProductsPage(
             await getProducts({
-              limit: normalizedQuery.limit,
-              skip: normalizedQuery.skip,
-              sortBy: normalizedQuery.sortBy,
-              order: normalizedQuery.order,
+              ...pageOptions,
               signal,
             }),
           );
@@ -33,10 +36,7 @@ export function getProductsListQuery(query: ProductsQuery) {
           return mapProductsListDtoToProductsPage(
             await searchProducts({
               q: normalizedQuery.q,
-              limit: normalizedQuery.limit,
-              skip: normalizedQuery.skip,
-              sortBy: normalizedQuery.sortBy,
-              order: normalizedQuery.order,
+              ...pageOptions,
               signal,
             }),
           );
@@ -45,3 +45,7 @@ export function getProductsListQuery(query: ProductsQuery) {
     staleTime: 30_000,
   });
 }
+
+export const productQueries = {
+  list: getProductsListQuery,
+};
