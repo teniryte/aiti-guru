@@ -1,3 +1,11 @@
 .searchInput {
-  --color-bg-search-input: #f3f3f3;
+  max-width: 420px;
+  width: 100%;
+  background: var(--color-bg-search-input);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.searchInput:focus-within {
+  border-color: var(--color-border-strong);
 }

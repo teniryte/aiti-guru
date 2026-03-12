@@ -1,17 +1,43 @@
-import { SearchInput } from '@/shared/ui/search-input';
+import { useEffect, useMemo, useState } from 'react';
+import debounce from 'lodash/debounce';
+import { Icon } from '@/shared/assets/icon';
+import { Input } from '@/shared/ui/input';
+import { useProductsFilters } from '../model/use-products-filters';
 import styles from './products-search-input.module.scss';
 
 interface ProductsSearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
+  className?: string;
 }
 
-export function ProductsSearchInput({ value, onChange }: ProductsSearchInputProps) {
+export function ProductsSearchInput({ className }: ProductsSearchInputProps) {
+  const { filters, setSearch } = useProductsFilters();
+  const [value, setValue] = useState(filters.search);
+
+  useEffect(() => {
+    setValue(filters.search);
+  }, [filters.search]);
+
+  const debouncedSetSearch = useMemo(() => debounce(setSearch, 300), [setSearch]);
+
+  useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch]);
+
   return (
-    <SearchInput
-      className={styles.searchInput}
+    <Input
+      className={[styles.searchInput, className].filter(Boolean).join(' ')}
       value={value}
-      onChange={onChange}
+      onChange={(event) => {
+        const nextValue = event.target.value;
+        setValue(nextValue);
+        debouncedSetSearch(nextValue);
+      }}
+      onClear={() => {
+        debouncedSetSearch.cancel();
+        setValue('');
+        setSearch('');
+      }}
+      icon={<Icon name="search" width={20} height={20} />}
+      isClearable
+      size="big"
       placeholder="Найти"
     />
   );
