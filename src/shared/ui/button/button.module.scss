@@ -39,6 +39,11 @@
     width: 100%;
   }
 
+  &.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   &.big {
     gap: 8px;
     border-radius: var(--app-radius-control-lg);

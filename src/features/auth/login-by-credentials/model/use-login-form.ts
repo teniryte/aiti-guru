@@ -48,5 +48,5 @@ export function useLoginForm() {
     }
   });
 
-  return { form, onSubmit };
+  return { form, onSubmit, isPending: mutation.isPending };
 }

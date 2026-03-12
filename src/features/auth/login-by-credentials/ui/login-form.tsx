@@ -9,7 +9,7 @@ import { useLoginForm } from '../model/use-login-form';
 import styles from './login-form.module.scss';
 
 export function LoginForm() {
-  const { form, onSubmit } = useLoginForm();
+  const { form, onSubmit, isPending } = useLoginForm();
   const {
     control,
     register,
@@ -65,7 +65,7 @@ export function LoginForm() {
           />
 
           <div className={styles.actions}>
-            <Button type="submit" size="big" isBlock>
+            <Button type="submit" size="big" isBlock isLoading={isPending}>
               Войти
             </Button>
 

@@ -8,6 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   isBlock?: boolean;
+  isLoading?: boolean;
   size?: ButtonSize;
 }
 
@@ -15,8 +16,10 @@ export function Button({
   children,
   icon,
   isBlock = false,
+  isLoading = false,
   size = 'normal',
   className = '',
+  disabled,
   ...rest
 }: ButtonProps) {
   return (
@@ -26,13 +29,20 @@ export function Button({
         {
           [styles[size]]: true,
           [styles.block]: isBlock,
+          [styles.loading]: isLoading,
         },
         className,
       )}
+      disabled={disabled ?? isLoading}
       {...rest}
     >
       {icon && <span className={styles.icon}>{icon}</span>}
-      {children && <span className={styles.label}>{children}</span>}
+      {children && (
+        <span className={styles.label}>
+          {children}
+          {isLoading && '...'}
+        </span>
+      )}
     </button>
   );
 }
