@@ -15,6 +15,7 @@ export function LoginForm() {
     register,
     formState: { errors },
   } = form;
+  const hasAuthError = Boolean(errors.root?.message);
 
   return (
     <div className={styles.card}>
@@ -32,12 +33,13 @@ export function LoginForm() {
               <Input
                 {...register('login')}
                 size="big"
+                isError={hasAuthError}
+                error={errors.login?.message}
                 isClearable
                 icon={<Icon name="person" width={24} height={24} />}
                 placeholder="Введите логин"
                 autoComplete="username"
               />
-              {errors.login && <span className={styles.errorText}>{errors.login.message}</span>}
             </Field>
 
             <Field label="Пароль" size="big">
@@ -45,11 +47,12 @@ export function LoginForm() {
                 {...register('password')}
                 type="password"
                 size="big"
+                isError={hasAuthError}
+                error={errors.password?.message ?? (hasAuthError ? 'Неверный логин или пароль' : undefined)}
                 icon={<Icon name="lock" width={24} height={24} />}
                 placeholder="Введите пароль"
                 autoComplete="current-password"
               />
-              {errors.password && <span className={styles.errorText}>{errors.password.message}</span>}
             </Field>
           </div>
 

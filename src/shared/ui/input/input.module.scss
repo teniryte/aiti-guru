@@ -1,3 +1,7 @@
+.inputRoot {
+  width: 100%;
+}
+
 .inputWrapper {
   display: inline-flex;
   align-items: center;
@@ -12,6 +16,14 @@
 
   &:focus-within {
     border-color: var(--color-border-strong);
+  }
+}
+
+.inputWrapperError {
+  border-color: var(--color-danger-text);
+
+  &:focus-within {
+    border-color: var(--color-danger-text);
   }
 }
 
@@ -95,4 +107,13 @@
 
 .inputWrapperBig .inputActionBtn {
   margin-block: -14px;
+}
+
+.errorText {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-danger-text);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: 140%;
 }
