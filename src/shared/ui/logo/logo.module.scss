@@ -1,0 +1,19 @@
+.logoWrapper {
+  display: flex;
+  width: 52px;
+  height: 52px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(237, 237, 237, 0.7);
+  background: linear-gradient(0deg, rgba(35, 35, 35, 0) 50%, rgba(35, 35, 35, 0.06) 100%), #fff;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 12px 8px 0 rgba(0, 0, 0, 0.03);
+  flex-shrink: 0;
+}
+
+.logoSvg {
+  flex-shrink: 0;
+}

@@ -1,0 +1,124 @@
+.card {
+  width: 527px;
+  max-width: 100%;
+  padding: 6px;
+  border-radius: 40px;
+  background: var(--color-bg-surface);
+  box-shadow: 0 24px 32px 0 rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 48px;
+  border-radius: 34px;
+  border: 1px solid var(--color-border-soft);
+  background: linear-gradient(180deg, rgba(35, 35, 35, 0.03) 0%, rgba(35, 35, 35, 0) 50%);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text-primary);
+  text-align: center;
+  font-size: 40px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 110%;
+  letter-spacing: -0.6px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.errorText {
+  color: var(--color-danger-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.orDivider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.orLine {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-soft);
+}
+
+.orText {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+}
+
+.signupText {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-18);
+  color: var(--color-text-secondary);
+}
+
+.signupLink {
+  color: var(--color-accent-solid);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    border-radius: 24px;
+  }
+
+  .inner {
+    padding: 32px 24px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}

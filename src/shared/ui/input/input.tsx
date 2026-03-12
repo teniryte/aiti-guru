@@ -70,12 +70,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   const [showPassword, setShowPassword] = useState(false);
   const [internalValue, setInternalValue] =
-    useState<React.InputHTMLAttributes<HTMLInputElement>['value']>(defaultValue);
+    useState<React.InputHTMLAttributes<HTMLInputElement>['value']>(defaultValue ?? '');
 
   const isControlled = value !== undefined;
   const isPassword = type === 'password';
 
-  const currentValue = isControlled ? value : internalValue;
+  const currentValue = isControlled ? value ?? '' : internalValue;
   const hasValue = !isValueEmpty(currentValue);
 
   const canClear = isClearable && hasValue && !disabled;
