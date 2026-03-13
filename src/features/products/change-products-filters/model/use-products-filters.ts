@@ -1,4 +1,5 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useCallback } from 'react';
 import type { ProductSortField } from '@/entities/product';
 import { PRODUCTS_PAGE_LIMIT, type ProductsSearch } from './products-search.schema';
 
@@ -8,38 +9,38 @@ export function useProductsFilters() {
   const filters = useSearch({ from: '/_protected/products' });
   const navigate = useNavigate();
 
-  const updateSearch = (updater: SearchUpdater) => {
+  const updateSearch = useCallback((updater: SearchUpdater) => {
     navigate({
       to: '/products',
       search: updater,
       replace: true,
     });
-  };
+  }, [navigate]);
 
-  const setSearch = (search: string) => {
+  const setSearch = useCallback((search: string) => {
     updateSearch((prev) => ({
       ...prev,
       search,
       page: 1,
     }));
-  };
+  }, [updateSearch]);
 
-  const setPage = (page: number) => {
+  const setPage = useCallback((page: number) => {
     updateSearch((prev) => ({
       ...prev,
       page,
     }));
-  };
+  }, [updateSearch]);
 
-  const setLimit = (limit: number) => {
+  const setLimit = useCallback((limit: number) => {
     updateSearch((prev) => ({
       ...prev,
       limit,
       page: 1,
     }));
-  };
+  }, [updateSearch]);
 
-  const toggleSort = (sortBy: ProductSortField) => {
+  const toggleSort = useCallback((sortBy: ProductSortField) => {
     updateSearch((prev) => {
       return {
         ...prev,
@@ -54,9 +55,9 @@ export function useProductsFilters() {
         page: 1,
       };
     });
-  };
+  }, [updateSearch]);
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     navigate({
       to: '/products',
       search: {
@@ -68,7 +69,7 @@ export function useProductsFilters() {
       },
       replace: true,
     });
-  };
+  }, [navigate]);
 
   return {
     filters,
