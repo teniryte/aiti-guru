@@ -1,7 +1,8 @@
 import { redirect } from '@tanstack/react-router';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
-import { hasSession, clearSessionTokens } from '@/entities/session/lib/token-storage';
+import { hasSession } from '@/entities/session/lib/token-storage';
 import { authQueries } from '@/entities/session/api/auth.queries';
+import { ApiError } from '@/shared/api/api-error';
 
 export const Route = createFileRoute('/_protected')({
   beforeLoad: () => {
@@ -13,9 +14,13 @@ export const Route = createFileRoute('/_protected')({
     const { queryClient } = context;
     try {
       await queryClient.ensureQueryData(authQueries.me());
-    } catch {
-      clearSessionTokens();
-      throw redirect({ to: '/login', replace: true });
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        // 401 handled by http-client interceptor (clears tokens, redirects)
+        throw redirect({ to: '/login', replace: true });
+      }
+      // Other errors (network, 5xx): don't clear tokens, rethrow
+      throw error;
     }
   },
   component: ProtectedLayout,

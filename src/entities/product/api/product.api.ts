@@ -10,7 +10,7 @@ import {
 } from './product.contracts';
 import { mapProductSortFieldToApiField } from './product.mapper';
 import type { ProductSortField, SortOrder } from '../model/product.types';
-import { httpClient } from '@/shared/api/http-client';
+import { getHttpClient } from '@/shared/api/configured-client';
 
 type RequestConfig = {
   signal?: AbortSignal;
@@ -44,7 +44,7 @@ export async function getProducts(
   params: BaseProductsParams & RequestConfig,
 ): Promise<ProductsListDto> {
   const { signal, ...requestParams } = params;
-  const { data } = await httpClient.get<unknown>('/products', {
+  const { data } = await getHttpClient().get<unknown>('/products', {
     ...getRequestConfig(signal),
     params: mapListRequestParams(requestParams),
   });
@@ -56,7 +56,7 @@ export async function searchProducts(
   params: SearchProductsParams & RequestConfig,
 ): Promise<ProductsListDto> {
   const { q, signal, ...requestParams } = params;
-  const { data } = await httpClient.get<unknown>('/products/search', {
+  const { data } = await getHttpClient().get<unknown>('/products/search', {
     ...getRequestConfig(signal),
     params: {
       q,
@@ -70,7 +70,7 @@ export async function searchProducts(
 export async function createProduct(
   payload: CreateProductDto,
 ): Promise<CreateProductResponseDto> {
-  const { data } = await httpClient.post<unknown>('/products/add', payload);
+  const { data } = await getHttpClient().post<unknown>('/products/add', payload);
 
   return CreateProductResponseDtoSchema.parse(data);
 }

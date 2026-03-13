@@ -3,6 +3,8 @@ import { RouterProvider } from '@tanstack/react-router';
 
 import { Toaster } from '@/shared/ui/toaster';
 
+import './http-client';
+
 import { queryClient } from './query-client';
 import { router } from './router';
 

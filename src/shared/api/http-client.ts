@@ -1,9 +1,14 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, type AxiosInstance } from 'axios';
 import { env } from '@/shared/config/env';
-import { getAccessToken } from '@/entities/session/lib/token-storage';
+import type { TokenProvider } from './token-provider';
 import { ApiError } from './api-error';
 
 const FALLBACK_API_ERROR_MESSAGE = 'API request failed';
+
+export interface CreateHttpClientOptions {
+  tokenProvider: TokenProvider;
+  onUnauthorized?: () => void | Promise<void>;
+}
 
 function getApiErrorMessage(error: AxiosError<unknown>): string {
   const message = error.response?.data;
@@ -22,38 +27,56 @@ function getApiErrorMessage(error: AxiosError<unknown>): string {
   return FALLBACK_API_ERROR_MESSAGE;
 }
 
-export const httpClient = axios.create({
-  baseURL: env.VITE_API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+export function createHttpClient(options: CreateHttpClientOptions): AxiosInstance {
+  const { tokenProvider, onUnauthorized } = options;
+  let isHandlingUnauthorized = false;
 
-httpClient.interceptors.request.use((config) => {
-  const token = getAccessToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+  const client = axios.create({
+    baseURL: env.VITE_API_BASE_URL,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-httpClient.interceptors.response.use(
-  (response) => response,
-  (error: unknown) => {
-    if (error instanceof ApiError) {
+  client.interceptors.request.use((config) => {
+    const token = tokenProvider();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+
+  client.interceptors.response.use(
+    (response) => response,
+    async (error: unknown) => {
+      if (error instanceof ApiError) {
+        return Promise.reject(error);
+      }
+
+      if (axios.isAxiosError(error) && error.response != null) {
+        const status = error.response.status;
+
+        if (status === 401 && onUnauthorized && !isHandlingUnauthorized) {
+          isHandlingUnauthorized = true;
+          try {
+            await onUnauthorized();
+          } finally {
+            isHandlingUnauthorized = false;
+          }
+        }
+
+        return Promise.reject(
+          new ApiError(
+            getApiErrorMessage(error),
+            error.response.status,
+            error.response.data,
+          ),
+        );
+      }
+
       return Promise.reject(error);
-    }
+    },
+  );
 
-    if (axios.isAxiosError(error) && error.response != null) {
-      return Promise.reject(
-        new ApiError(
-          getApiErrorMessage(error),
-          error.response.status,
-          error.response.data,
-        ),
-      );
-    }
-
-    return Promise.reject(error);
-  },
-);
+  return client;
+}
