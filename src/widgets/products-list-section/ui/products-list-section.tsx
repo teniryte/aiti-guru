@@ -20,7 +20,7 @@ export function ProductsListSection({ search }: ProductsListSectionProps) {
       return;
     }
 
-    const totalPages = Math.max(1, Math.ceil(query.data.total / query.data.limit));
+    const totalPages = Math.max(1, Math.ceil(query.data.total / search.limit));
 
     if (search.page > totalPages) {
       setPage(totalPages);
@@ -45,7 +45,7 @@ export function ProductsListSection({ search }: ProductsListSectionProps) {
       <ProductsListSectionFooter
         total={query.data?.total ?? 0}
         skip={query.data?.skip ?? 0}
-        limit={query.data?.limit ?? search.limit}
+        limit={search.limit}
       />
     </section>
   );
