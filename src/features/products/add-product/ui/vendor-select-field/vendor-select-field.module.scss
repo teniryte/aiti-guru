@@ -17,7 +17,7 @@
   min-height: 40px;
   box-sizing: border-box;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-radius: var(--app-radius-control);
   border: var(--border-width-1_5) solid var(--color-border-soft);
   background: var(--color-bg-surface);
@@ -62,6 +62,14 @@
   font-weight: var(--font-weight-medium);
   line-height: 140%;
   letter-spacing: 0;
+
+  input {
+    font-family: var(--app-font-family);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    line-height: 140%;
+    letter-spacing: 0;
+  }
 }
 
 .singleValue {
@@ -75,7 +83,11 @@
 
 .placeholder {
   color: var(--color-text-muted);
+  font-family: var(--app-font-family);
+  font-size: var(--font-size-14);
   font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0;
 }
 
 .indicatorsContainer {

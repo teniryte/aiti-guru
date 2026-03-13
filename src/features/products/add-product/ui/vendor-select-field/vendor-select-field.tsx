@@ -62,7 +62,7 @@ export function VendorSelectField({
   return (
     <div
       className={`${styles.wrapper} ${error ? styles.wrapperError : ''} ${className ?? ''}`}
-      data-disabled={disabled ?? undefined}
+      data-disabled={disabled ? '' : undefined}
     >
       <CreatableSelect<VendorOption, false>
         unstyled
