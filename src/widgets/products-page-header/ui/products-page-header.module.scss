@@ -39,8 +39,43 @@
   letter-spacing: -0.03em;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex: 1;
+}
+
 .searchWrapper {
   flex: 0 1 420px;
+}
+
+.userSection {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 12px;
+  background: var(--color-bg-surface-subtle);
+  white-space: nowrap;
+}
+
+.userLabel {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-14);
+}
+
+.userValue {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.logoutButton {
+  padding: 6px 12px;
+  font-size: 13px;
 }
 
 @media (max-width: 960px) {
@@ -49,7 +84,17 @@
     align-items: stretch;
   }
 
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .searchWrapper {
     flex-basis: auto;
+  }
+
+  .userSection {
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
