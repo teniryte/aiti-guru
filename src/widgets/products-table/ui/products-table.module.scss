@@ -29,6 +29,17 @@
   border-top: 1px solid var(--color-border-soft);
 }
 
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  transition: opacity var(--transition-fast);
+}
+
+.rowsDimmed {
+  opacity: 0.45;
+}
+
 .row {
   padding: 18px 20px;
   border-bottom: 1px solid var(--color-border-soft);

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import type { Product } from '@/entities/product';
 import { getProductsTableRows } from '../model/get-products-table-rows';
 import { ProductsTableEmpty } from './products-table-empty';
@@ -61,6 +62,8 @@ export function ProductsTable({
     setSelectedIds(value ? new Set(rows.map((row) => row.id)) : new Set());
   };
 
+  const shouldDimRows = !isPending && !hasError && isFetching && rows.length > 0;
+
   return (
     <div className={styles.table}>
       <ProductsTableHead allSelected={allSelected} onToggleAll={handleSelectAll} />
@@ -69,15 +72,18 @@ export function ProductsTable({
         {isPending && <ProductsTableSkeleton />}
         {!isPending && hasError && <ProductsTableError onRetry={onRetry} />}
         {!isPending && !hasError && rows.length === 0 && <ProductsTableEmpty />}
-        {!isPending && !hasError && rows.map((row) => (
-          <ProductsTableRow
-            key={row.id}
-            product={row.product}
-            selected={selectedIds.has(row.id)}
-            onSelect={handleSelectRow}
-          />
-        ))}
-        {!isPending && !hasError && isFetching && rows.length > 0 && <ProductsTableSkeleton />}
+        {!isPending && !hasError && (
+          <div className={clsx(styles.rows, shouldDimRows && styles.rowsDimmed)}>
+            {rows.map((row) => (
+              <ProductsTableRow
+                key={row.id}
+                product={row.product}
+                selected={selectedIds.has(row.id)}
+                onSelect={handleSelectRow}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
