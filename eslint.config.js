@@ -9,16 +9,13 @@ import tanstackQuery from '@tanstack/eslint-plugin-query';
 export default defineConfig([
   globalIgnores(['dist']),
   {
-    plugins: {
-      '@tanstack/query': tanstackQuery,
-    },
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
-      ...tanstackQuery.configs.recommended.rules,
+      ...tanstackQuery.configs['flat/recommended'],
     ],
     languageOptions: {
       ecmaVersion: 2020,
