@@ -1,53 +1,51 @@
 # Запросы к AI-агентам
 
-Результаты всех запросов использовал в качестве базового кода, который затем допиливал вручную или с помощью дополнительных запросов.
+Ниже — примеры запросов, которые использовались в разработке. Ответы AI применялись как черновые решения и затем проверялись/дорабатывались вручную.
 
-## 1. Рефакторинг и улучшение компонента Input
+## 1. Production-ревью компонента `Input`
 
-> Модель: **GPT-5.4**
+> Модель: **GPT-5.3-Codex**
 
-```
-Проанализируй код компонента Input, найди узкие места и выдай список возможных улучшений с точки зрения компонента продакшн-уровня.
-```
+```md
+Review the `shared/ui/input` component for production readiness.
 
-- Рефакторинг выполнен вручную.
-
-## 2. Компонент Dialog
-
-> Модель: **GPT-5.4**
-
-```
-Создай компонент shared/ui/dialog с использованием примитивов Radix UI и свойствами:
-
-- open
-- onOpenChange
-- title
-- children
-- footer
-- className
-
-Стили должны соответствовать общей теме проекта и существущих компонентов.
+- Focus on accessibility, API consistency, validation UX, and composability.
+- For each issue, provide a minimal fix and explain why it improves long-term maintainability.
+- Keep recommendations actionable and scoped to this component.
 ```
 
-## 3. Система тостов
+## 2. Создать переиспользуемый `Dialog` на базе Radix
 
-> Модель: **GPT-5.4**
+> Модель: **GPT-5.3-Codex**
 
-```
-Реализуй систему тостов приложения:
+```md
+Create a reusable `shared/ui/dialog` component using Radix Dialog primitives.
 
-1. На базе механики radix/react-toast создай компонент shared/ui/toaster, представляющий стек тостов.
-2. Добавь zustand-хранилище и утилилиту toast в shared/lib/toast, включающую следующие методы:
-- info(message: string)
-- success(message: string)
-- error(message: string)
-3. Реализуй анимацию появления и исчезновения тостов с помощью motion.
+- Keep the API limited to `open`, `onOpenChange`, `title`, `children`, `footer`, and `className`.
+- Follow existing project UI patterns for spacing, typography, and states.
+- Add a short usage example for a destructive confirmation modal.
 ```
 
-## 4. Компонент NumberSlider
+## 3. Спроектировать архитектуру toast с изоляцией состояния
 
-> Модель: **GPT-5.3 Codex**
+> Модель: **GPT-5.3-Codex**
 
+```md
+Propose a toast architecture for this React application.
+
+- Use Radix Toast for rendering and a compact Zustand store for state.
+- Provide helper methods: `info(message)`, `success(message)`, and `error(message)`.
+- Include rules for duplicate prevention and define the provider placement in the app tree.
 ```
-Реализуй компонент NumberSlider на базе radix-примитива slider. Помимо radix-свойств компонент должен принимать свойство tickStep и отрисовывать деления.
+
+## 4. Реализовать `NumberSlider` с делениями и контролируемым режимом
+
+> Модель: **GPT-5.3-Codex**
+
+```md
+Implement `NumberSlider` on top of Radix Slider with production-safe defaults.
+
+- Support both controlled and uncontrolled modes.
+- Add `tickStep` to render visual ticks across the track.
+- Document and handle edge cases for `min`, `max`, and `step` combinations.
 ```
