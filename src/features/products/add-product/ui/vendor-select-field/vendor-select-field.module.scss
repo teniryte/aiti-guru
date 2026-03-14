@@ -164,7 +164,10 @@
 }
 
 .error {
+  display: block;
+  margin-top: 4px;
   color: var(--color-danger-text);
-  font-size: var(--font-size-14);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
   line-height: 140%;
 }

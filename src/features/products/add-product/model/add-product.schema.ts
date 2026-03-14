@@ -1,8 +1,25 @@
 import { z } from 'zod';
 
+const priceSchema = z.preprocess(
+  (value) => {
+    if (value === '' || value == null) {
+      return undefined;
+    }
+
+    if (typeof value === 'number') {
+      return Number.isNaN(value) ? undefined : value;
+    }
+
+    const parsedValue = Number(value);
+
+    return Number.isNaN(parsedValue) ? undefined : parsedValue;
+  },
+  z.number({ message: 'Укажите цену' }).positive('Цена должна быть больше 0'),
+);
+
 export const addProductSchema = z.object({
   name: z.string().trim().min(1, 'Введите название товара'),
-  price: z.coerce.number().positive('Цена должна быть больше 0'),
+  price: priceSchema,
   rating: z
     .number({ message: 'Укажите рейтинг' })
     .min(0, 'Рейтинг не может быть меньше 0')
