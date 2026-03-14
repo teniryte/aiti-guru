@@ -13,7 +13,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       <AppProgress />
       <Outlet />
 
-      <TanStackRouterDevtools />
+      {import.meta.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
     </>
   ),
 });
