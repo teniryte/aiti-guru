@@ -13,7 +13,7 @@ import { useAddProductStore } from './add-product.store';
 const emptyValues: AddProductFormInput = {
   name: '',
   price: '',
-  rating: 0,
+  rating: 4,
   vendor: '',
   article: '',
 };
