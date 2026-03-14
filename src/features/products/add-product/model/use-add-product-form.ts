@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { createProductMutation } from '@/entities/product';
+import { toast } from '@/shared/lib/toast';
 import {
   addProductSchema,
   type AddProductFormInput,
@@ -39,6 +40,7 @@ export function useAddProductForm(open: boolean) {
   const onSubmit = form.handleSubmit(async (values) => {
     try {
       await mutation.mutateAsync(values);
+      toast.success('Товар успешно добавлен');
       closeDialog();
       form.reset(emptyValues);
     } catch {
