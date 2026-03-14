@@ -12,7 +12,10 @@ interface ProductsListSectionProps {
 }
 
 export function ProductsListSection({ search }: ProductsListSectionProps) {
-  const query = useQuery(productQueries.list(getProductsSearchQuery(search)));
+  const query = useQuery({
+    ...productQueries.list(getProductsSearchQuery(search)),
+    placeholderData: (previousData) => previousData,
+  });
   const { setPage } = useProductsFilters();
 
   useEffect(() => {
