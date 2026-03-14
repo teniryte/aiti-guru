@@ -7,12 +7,8 @@ import './http-client';
 
 import { queryClient } from './query-client';
 import { router } from './router';
-import { useEffect } from 'react';
 
 export function AppProvider() {
-  useEffect(() => {
-    console.log('RENDER');
-  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
