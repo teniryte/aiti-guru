@@ -19,8 +19,9 @@ export const Route = createFileRoute('/_protected')({
         // 401 handled by http-client interceptor (clears tokens, redirects)
         throw redirect({ to: '/login', replace: true });
       }
-      // Other errors (network, 5xx): don't clear tokens, rethrow
-      throw error;
+      // Temporary API issues (network, 5xx) should not break initial render
+      // with route-level error page. Downstream screens will handle own requests.
+      return null;
     }
   },
   component: ProtectedLayout,
