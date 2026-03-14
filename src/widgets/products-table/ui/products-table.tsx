@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import type { Product } from '@/entities/product';
 import { getProductsTableRows } from '../model/get-products-table-rows';
@@ -38,13 +38,17 @@ export function ProductsTable({
         }
       });
 
+      if (next.size === prev.size && Array.from(next).every((id) => prev.has(id))) {
+        return prev;
+      }
+
       return next;
     });
   }, [rows]);
 
   const allSelected = rows.length > 0 && rows.every((row) => selectedIds.has(row.id));
 
-  const handleSelectRow = (id: number, value: boolean) => {
+  const handleSelectRow = useCallback((id: number, value: boolean) => {
     setSelectedIds((prev) => {
       const next = new Set(prev);
 
@@ -56,11 +60,11 @@ export function ProductsTable({
 
       return next;
     });
-  };
+  }, []);
 
-  const handleSelectAll = (value: boolean) => {
+  const handleSelectAll = useCallback((value: boolean) => {
     setSelectedIds(value ? new Set(rows.map((row) => row.id)) : new Set());
-  };
+  }, [rows]);
 
   const shouldDimRows = !isPending && !hasError && isFetching && rows.length > 0;
 

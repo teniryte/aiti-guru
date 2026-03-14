@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { ProductsSortTrigger } from '@/features/products/change-products-filters';
 import styles from './products-table.module.scss';
@@ -7,7 +8,7 @@ interface ProductsTableHeadProps {
   onToggleAll: (value: boolean) => void;
 }
 
-export function ProductsTableHead({
+function ProductsTableHeadComponent({
   allSelected,
   onToggleAll,
 }: ProductsTableHeadProps) {
@@ -34,3 +35,5 @@ export function ProductsTableHead({
     </div>
   );
 }
+
+export const ProductsTableHead = memo(ProductsTableHeadComponent);

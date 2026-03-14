@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
       svgr(),
     ],
     resolve: {
+      dedupe: ['react', 'react-dom'],
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },

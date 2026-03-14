@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import clsx from 'clsx';
 import {
   ProductNameCell,
@@ -35,12 +36,12 @@ function renderRating(rating: number | null) {
   );
 }
 
-export function ProductsTableRow({
+function ProductsTableRowComponent({
   product,
   selected,
   onSelect,
 }: ProductsTableRowProps) {
-  const formattedPrice = formatPrice(product.price);
+  const formattedPrice = useMemo(() => formatPrice(product.price), [product.price]);
 
   return (
     <div className={clsx(styles.row, selected && styles.selected)}>
@@ -69,3 +70,5 @@ export function ProductsTableRow({
     </div>
   );
 }
+
+export const ProductsTableRow = memo(ProductsTableRowComponent);
