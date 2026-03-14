@@ -3,6 +3,7 @@ import { Field } from '@/shared/ui/field';
 import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
+import { NumberSlider } from '@/shared/ui/number-slider';
 import { useAddProductStore } from '../model/add-product.store';
 import { useAddProductForm } from '../model/use-add-product-form';
 import { VendorSelectField } from './vendor-select-field';
@@ -25,7 +26,7 @@ export function AddProductDialog() {
       open={open}
       onOpenChange={setOpen}
       title="Добавить товар"
-      footer={(
+      footer={
         <div className={styles.footer}>
           <button
             type="button"
@@ -39,7 +40,7 @@ export function AddProductDialog() {
             Сохранить
           </Button>
         </div>
-      )}
+      }
     >
       <form id={FORM_ID} className={styles.form} onSubmit={onSubmit} noValidate>
         <div className={styles.fields}>
@@ -64,6 +65,25 @@ export function AddProductDialog() {
               isError={Boolean(errors.price)}
               error={errors.price?.message}
             />
+          </Field>
+
+          <Field label="Рейтинг">
+            <Controller
+              name="rating"
+              control={control}
+              render={({ field }) => (
+                <NumberSlider
+                  value={field.value ?? 0}
+                  onChange={field.onChange}
+                  min={0}
+                  max={5}
+                  step={0.1}
+                  disabled={isPending}
+                  ariaLabel="Рейтинг товара"
+                />
+              )}
+            />
+            {errors.rating?.message && <p className={styles.errorText}>{errors.rating.message}</p>}
           </Field>
 
           <Field label="Вендор">

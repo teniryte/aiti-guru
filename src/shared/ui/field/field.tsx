@@ -5,11 +5,12 @@ type FieldProps = {
   label?: string;
   children?: React.ReactNode;
   size?: 'normal' | 'big';
+  className?: string;
 };
 
-export function Field({ label, children, size = 'normal' }: FieldProps) {
+export function Field({ label, children, size = 'normal', className }: FieldProps) {
   return (
-    <div className={styles.field}>
+    <div className={clsx(styles.field, className)}>
       {label && (
         <span
           className={clsx(styles.label, {

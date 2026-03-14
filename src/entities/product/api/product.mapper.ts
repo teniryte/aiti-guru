@@ -57,6 +57,7 @@ export function mapCreateProductInputToDto(input: CreateProductInput): CreatePro
   return {
     title: input.name,
     price: input.price,
+    rating: input.rating,
     brand: input.vendor,
     sku: input.article,
   };
@@ -72,7 +73,7 @@ export function mapCreateProductResponseDtoToProduct(
     price: dto.price ?? input.price,
     vendor: mapOptionalTextValue(dto.brand ?? input.vendor),
     article: mapOptionalTextValue(dto.sku ?? input.article),
-    rating: dto.rating ?? null,
+    rating: dto.rating ?? input.rating,
     category: mapOptionalTextValue(dto.category),
   };
 }

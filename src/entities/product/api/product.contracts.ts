@@ -20,6 +20,7 @@ export const ProductsListDtoSchema = z.object({
 export const CreateProductDtoSchema = z.object({
   title: z.string(),
   price: z.number(),
+  rating: z.number(),
   brand: z.string(),
   sku: z.string(),
 });

@@ -24,6 +24,7 @@ export type CreateProductInput = {
   price: number;
   vendor: string;
   article: string;
+  rating: number;
 };
 
 export type CreateProductResult = Product;
