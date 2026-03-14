@@ -13,9 +13,7 @@ export function ProductsSearchInput({ className }: ProductsSearchInputProps) {
   const { filters, setSearch } = useProductsFilters();
   const [value, setValue] = useState(filters.search);
 
-  useEffect(() => {
-    setValue(filters.search);
-  }, [filters.search]);
+  const getSearchQuery = (nextValue: string) => (nextValue.length > 1 ? nextValue : '');
 
   const debouncedSetSearch = useMemo(() => debounce(setSearch, 300), [setSearch]);
 
@@ -28,7 +26,7 @@ export function ProductsSearchInput({ className }: ProductsSearchInputProps) {
       onChange={(event) => {
         const nextValue = event.target.value;
         setValue(nextValue);
-        debouncedSetSearch(nextValue);
+        debouncedSetSearch(getSearchQuery(nextValue));
       }}
       onClear={() => {
         debouncedSetSearch.cancel();
