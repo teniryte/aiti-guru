@@ -63,6 +63,8 @@ bun run test
 - **@lodash** — js-утилиты.
 - **svgr (vite-plugin-svgr)** — загрузка svg-иконок из файлов в виде компонентов.
 - **ESLint + Prettier** — качество и единообразие кода.
+- **vitest** — хорошо интегрированный с vite test runner.
+- **React Testing Library** — тестирование компонентов.
 
 ## Иконки
 

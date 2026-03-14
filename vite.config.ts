@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig, loadEnv } from 'vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
@@ -28,6 +29,11 @@ export default defineConfig(({ mode }) => {
       host: '0.0.0.0',
       port: Number(env.PORT) || 5173,
       allowedHosts: ['flaux.ru'],
+    },
+    test: {
+      environment: 'happy-dom',
+      include: ['src/**/*.test.{ts,tsx}'],
+      globals: false,
     },
   };
 });
