@@ -43,7 +43,7 @@ export function useLoginForm() {
         values.rememberMe ?? false,
       );
       await queryClient.fetchQuery(authQueries.me());
-      toast.success('Вы успешно вошли в систему');
+      toast.info('Вы успешно вошли в систему');
       navigate({ to: '/products', replace: true });
     } catch (error) {
       form.setError('root', { message: mapLoginError(error) });
