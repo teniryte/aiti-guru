@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
@@ -24,8 +24,10 @@ export function useLoginForm() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const mutation = useMutation(loginMutation);
-  const loginValue = form.watch('login');
-  const passwordValue = form.watch('password');
+  const [loginValue, passwordValue] = useWatch({
+    control: form.control,
+    name: ['login', 'password'],
+  });
 
   useEffect(() => {
     if (form.formState.errors.root?.message) {

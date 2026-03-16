@@ -28,7 +28,7 @@ export function ProductsListSection({ search }: ProductsListSectionProps) {
     if (search.page > totalPages) {
       setPage(totalPages);
     }
-  }, [query.data, search.page, setPage]);
+  }, [query.data, search.limit, search.page, setPage]);
 
   return (
     <section className={styles.section}>

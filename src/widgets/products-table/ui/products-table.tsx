@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import type { Product } from '@/entities/product';
 import { getProductsTableRows } from '../model/get-products-table-rows';
@@ -28,25 +28,20 @@ export function ProductsTable({
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const hasError = error != null;
 
-  useEffect(() => {
-    setSelectedIds((prev) => {
-      const next = new Set<number>();
+  const visibleRowIds = useMemo(() => new Set(rows.map((row) => row.id)), [rows]);
+  const selectedVisibleIds = useMemo(() => {
+    const next = new Set<number>();
 
-      rows.forEach((row) => {
-        if (prev.has(row.id)) {
-          next.add(row.id);
-        }
-      });
-
-      if (next.size === prev.size && Array.from(next).every((id) => prev.has(id))) {
-        return prev;
+    selectedIds.forEach((id) => {
+      if (visibleRowIds.has(id)) {
+        next.add(id);
       }
-
-      return next;
     });
-  }, [rows]);
 
-  const allSelected = rows.length > 0 && rows.every((row) => selectedIds.has(row.id));
+    return next;
+  }, [selectedIds, visibleRowIds]);
+
+  const allSelected = rows.length > 0 && rows.every((row) => selectedVisibleIds.has(row.id));
 
   const handleSelectRow = useCallback((id: number, value: boolean) => {
     setSelectedIds((prev) => {
@@ -82,7 +77,7 @@ export function ProductsTable({
               <ProductsTableRow
                 key={row.id}
                 product={row.product}
-                selected={selectedIds.has(row.id)}
+                selected={selectedVisibleIds.has(row.id)}
                 onSelect={handleSelectRow}
               />
             ))}
