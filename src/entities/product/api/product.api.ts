@@ -4,10 +4,7 @@ import type {
   CreateProductResponseDto,
   ProductsListDto,
 } from './product.contracts';
-import {
-  CreateProductResponseDtoSchema,
-  ProductsListDtoSchema,
-} from './product.contracts';
+import { CreateProductResponseDtoSchema, ProductsListDtoSchema } from './product.contracts';
 import { mapProductSortFieldToApiField } from './product.mapper';
 import type { ProductSortField, SortOrder } from '../model/product.types';
 import { getHttpClient } from '@/shared/api/configured-client';
@@ -67,9 +64,7 @@ export async function searchProducts(
   return ProductsListDtoSchema.parse(data);
 }
 
-export async function createProduct(
-  payload: CreateProductDto,
-): Promise<CreateProductResponseDto> {
+export async function createProduct(payload: CreateProductDto): Promise<CreateProductResponseDto> {
   const { data } = await getHttpClient().post<unknown>('/products/add', payload);
 
   return CreateProductResponseDtoSchema.parse(data);

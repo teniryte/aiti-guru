@@ -9,7 +9,7 @@ export const authApi = {
       password: credentials.password,
       ...(credentials.expiresInMins != null && { expiresInMins: credentials.expiresInMins }),
     });
-    
+
     return loginResponseSchema.parse(data);
   },
 

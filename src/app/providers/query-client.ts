@@ -1,4 +1,8 @@
-import { QueryClient } from '@tanstack/react-query';
+import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
+import {
+  showServerErrorToast,
+  shouldShowServerErrorToast,
+} from '@/shared/lib/server-error-toast';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,4 +16,18 @@ export const queryClient = new QueryClient({
       retry: 0,
     },
   },
+  queryCache: new QueryCache({
+    onError: (error, query) => {
+      if (shouldShowServerErrorToast(error, query.meta)) {
+        showServerErrorToast();
+      }
+    },
+  }),
+  mutationCache: new MutationCache({
+    onError: (error, _variables, _context, mutation) => {
+      if (shouldShowServerErrorToast(error, mutation.meta)) {
+        showServerErrorToast();
+      }
+    },
+  }),
 });

@@ -56,7 +56,9 @@ export function createHttpClient(options: CreateHttpClientOptions): AxiosInstanc
       if (axios.isAxiosError(error) && error.response != null) {
         const status = error.response.status;
 
-        if (status === 401 && onUnauthorized && !isHandlingUnauthorized) {
+        const hasActiveSession = tokenProvider() != null;
+
+        if (status === 401 && hasActiveSession && onUnauthorized && !isHandlingUnauthorized) {
           isHandlingUnauthorized = true;
           try {
             await onUnauthorized();

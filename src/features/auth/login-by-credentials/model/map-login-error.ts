@@ -1,9 +1,16 @@
-const FALLBACK_MESSAGE = 'Не удалось выполнить вход';
+import { ApiError } from '@/shared/api/api-error';
 
-export function mapLoginError(error: unknown): string {
-  if (error instanceof Error && error.message.length > 0) {
-    return error.message;
+const INVALID_CREDENTIALS_MESSAGE = 'Invalid credentials';
+const UI_INVALID_CREDENTIALS_MESSAGE = 'Неверный логин или пароль';
+
+export function mapLoginError(error: unknown): string | null {
+  if (!(error instanceof ApiError)) {
+    return null;
   }
 
-  return FALLBACK_MESSAGE;
+  if (error.message === INVALID_CREDENTIALS_MESSAGE) {
+    return UI_INVALID_CREDENTIALS_MESSAGE;
+  }
+
+  return null;
 }

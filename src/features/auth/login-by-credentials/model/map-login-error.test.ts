@@ -1,13 +1,18 @@
 import { describe, expect, it } from 'vitest';
+import { ApiError } from '@/shared/api/api-error';
 import { mapLoginError } from './map-login-error';
 
 describe('mapLoginError', () => {
-  it('returns error message when Error has non-empty message', () => {
-    expect(mapLoginError(new Error('Неверный пароль'))).toBe('Неверный пароль');
+  it('maps invalid credentials ApiError to UI auth message', () => {
+    expect(mapLoginError(new ApiError('Invalid credentials', 400))).toBe('Неверный логин или пароль');
   });
 
-  it('returns fallback message for unknown values', () => {
-    expect(mapLoginError(null)).toBe('Не удалось выполнить вход');
-    expect(mapLoginError({ message: 'x' })).toBe('Не удалось выполнить вход');
+  it('returns null for server errors that should be handled by toast', () => {
+    expect(mapLoginError(new ApiError('Internal server error', 500))).toBeNull();
+  });
+
+  it('returns null for unknown values', () => {
+    expect(mapLoginError(null)).toBeNull();
+    expect(mapLoginError(new Error('x'))).toBeNull();
   });
 });
