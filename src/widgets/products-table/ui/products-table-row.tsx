@@ -30,7 +30,7 @@ function renderRating(rating: number | null) {
 
   return (
     <span className={styles.ratingValue}>
-      <span className={rating < 4 ? styles.ratingLow : undefined}>{rating.toFixed(1)}</span>
+      <span className={rating < 3 ? styles.ratingLow : undefined}>{rating.toFixed(1)}</span>
       <span className={styles.ratingScale}>/5</span>
     </span>
   );
